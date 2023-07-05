@@ -1,25 +1,18 @@
 // Based in: 
 // https://github.com/sandeepmistry/arduino-LoRa
 
-#include <Wire.h>
 #include <LoRa.h>
 #include <ArduinoJson.h>
 
-#define LORA_SCK 14
-#define LORA_MISO 12
-#define LORA_MOSI 13
 #define LORA_SS 15
 #define LORA_RST 16
 #define LORA_DI0 5
 
 void setup() {
-
   Serial.begin(115200);
+  while (!Serial);
 
-  SPI.begin();
   LoRa.setPins(LORA_SS, LORA_RST, LORA_DI0);
-  LoRa.enableCrc();
-  LoRa.setSyncWord(0x12);
   if (!LoRa.begin(868E6)) {
     Serial.println("Starting LoRa failed!");
     while (1);
@@ -28,32 +21,29 @@ void setup() {
 }
 
 void loop() {
+  static char jsonBuffer[100];
+
   float temperature = 99;
   float humidity = 50;
   float pressure = 999;
 
-  char tempStr[10];
-  char humStr[10];
-  char presStr[10];
+  StaticJsonDocument<100> doc;
 
-  dtostrf(temperature, 4, 1, tempStr);
-  dtostrf(humidity, 4, 1, humStr);
-  dtostrf(pressure, 6, 1, presStr);
+  doc["tempc"] = temperature;
+  doc["hum"] = humidity;
+  doc["pres"] = pressure;
 
-  String jsonData = "{\"tempc\":";
-  jsonData += String(tempStr);
-  jsonData += ",\"hum\":";
-  jsonData += String(humStr);
-  jsonData += ",\"pres\":";
-  jsonData += String(presStr);
-  jsonData += "}";
+  size_t len = measureJson(doc) + 1;
+  serializeJson(doc, jsonBuffer, len);
 
-  Serial.println(jsonData);
+  Serial.println(jsonBuffer);
 
-  LoRa.beginPacket();
-  LoRa.print(jsonData);
-  LoRa.endPacket();
-  
+  if (!LoRa.isTransmitting()) {
+    LoRa.beginPacket();
+    LoRa.print(jsonBuffer);
+    LoRa.endPacket();
+  }
+
   delay(10000);
 }
 
