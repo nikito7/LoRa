@@ -1,5 +1,15 @@
 # Home Assistant Package
 
-
+template:
+#2
+  - sensor:
+###4
+    - name: "LoRa ID Status"
+      state: >
+        {% set data = states('sensor.gatewaylora_2')|string %}
+        {% set id = data.split('|')[1] | float(0) %}
+        {% if id == "id" %}
+          {{ "ok" }}
+        {% endif %}
 
 # EOF
