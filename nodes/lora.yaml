@@ -12,4 +12,13 @@ template:
           {{ "ok" }}
         {% endif %}
 
+    - name: "LoRa ID Temp"
+      state: >
+        {% set data = states('sensor.gatewaylora_2')|string %}
+        {% set id = data.split('|')[1]|string %}
+        {% set temp = data.split('|')[2]|float(None) %}
+        {% if id == "id" and temp > -1 %}
+          {{ temp }}
+        {% endif %}
+        
 # EOF
