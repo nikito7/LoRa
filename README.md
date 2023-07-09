@@ -7,3 +7,5 @@ http://u.easyhan.pt/lora-omg/easyhan-esp32-firmware.bin
 ```
 
 http://u.easyhan.pt/lora-omg/easyhan-esp32-firmware.bin
+
+http://u.easyhan.pt/lora-omg/
