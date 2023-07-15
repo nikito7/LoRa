@@ -4,7 +4,7 @@ mqtt:
 #2
   sensor:
 ###4
-    - name: "LoRa ID Raw
+    - name: "LoRa ID Raw"
       unique_id: LoRa_ID_Raw
       state_topic: "home/OMG_ESP32_LORA/LORA2MQTT"
 
