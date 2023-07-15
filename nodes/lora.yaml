@@ -22,10 +22,24 @@ mqtt:
       value_template: >
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
-        {% set tempc = (msg|from_json)['tempc'] %}
-        {% if id == "id7" and tempc > -99 %}
-          {{ tempc }}
+        {% set x = (msg|from_json)['tempc'] %}
+        {% if id == "id7" and x > -99 %}
+          {{ x }}
         {% endif %}
       unit_of_measurement: "°C"
 
+    - name: "LoRa ID7 Uptime"
+      unique_id: LoRa_ID7_Uptime
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      value_template: >
+        {% set msg = value_json['message'] %}
+        {% set id = (msg|from_json)['id'] %}
+        {% set x = (msg|from_json)['up'] %}
+        {% if id == "id7" and x > -1 %}
+          {{ x }}
+        {% endif %}
+      unit_of_measurement: "s"
+
 # EOF
+
+
