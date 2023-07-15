@@ -14,19 +14,12 @@ mqtt:
       unique_id: LoRa_ID_Status
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
-        {% set id = value_json.message.id|string %}
-        {% if id == "id7" %}
-          {{ "ok" }}
-        {% endif %}
+        {{ value_json.message.id|string }}
 
     - name: "LoRa ID Temp"
       unique_id: LoRa_ID_Temp
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
-        {% set id = value_json.message.id|string %}
-        {% set temp = json_value.message.tempc|float(None) %}
-        {% if id == "id7" and temp > -99 %}
-          {{ temp }}
-        {% endif %}
-        
+        {{{ json_value.message.tempc }}
+
 # EOF
