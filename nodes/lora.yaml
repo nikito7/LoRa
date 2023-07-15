@@ -22,13 +22,13 @@ mqtt:
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
         {% set msg = value_json.message %}
-          {{ msg.from_json.id|string }}
+          {{ msg.to_json.id|string }}
 
     - name: "LoRa ID Temp"
       unique_id: LoRa_ID_Temp
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
         {% set msg = value_json.message %}
-          {{ msg.from_json.tempc|float(None) }}
+          {{ msg.to_json.tempc|float(None) }}
 
 # EOF
