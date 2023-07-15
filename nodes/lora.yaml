@@ -15,7 +15,7 @@ template:
     - name: "LoRa ID Temp"
       state: >
         {% set data = states('sensor.gatewaylora_2')|string %}
-        {% set id = data.json_value.id|string
+        {% set id = data.json_value.id|string %}
         {% set temp = data.json_value.tempc|float(None) %}
         {% if id == "id7" and temp > -1 %}
           {{ temp }}
