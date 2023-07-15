@@ -8,7 +8,7 @@ mqtt:
       unique_id: LoRa_ID7_Status
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
-        {% set msg = value_json['message']| %}
+        {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
         {% if id == "id7" %}
           {{ "ok: " + id }}
