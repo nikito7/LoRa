@@ -4,6 +4,16 @@ mqtt:
 #2
   sensor:
 ###4
+    - name: "LoRa Nodes RSSI"
+      unique_id: LoRa_Nodes_RSSI
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      value_template: >
+        {% set msg = value_json['rssi'] %}
+          {{ msg }}
+      unit_of_measurement: dBm
+      device_class: signal
+      state_class: measurement 
+
     - name: "LoRa ID7 Status"
       unique_id: LoRa_ID7_Status
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
