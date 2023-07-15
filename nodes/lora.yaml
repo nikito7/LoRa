@@ -4,29 +4,28 @@ mqtt:
 #2
   sensor:
 ###4
-    - name: "LoRa ID Raw"
-      unique_id: LoRa_ID_Raw
+    - name: "LoRa ID7 Status"
+      unique_id: LoRa_ID7_Status
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
-        {{ value_json.message }}
-
-    - name: "LoRa ID Msg"
-      unique_id: LoRa_ID_Msg
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
-      value_template: >
-        {% set msg = value_json.message %}
-          {{ msg }}
-
-    - name: "LoRa ID Status"
-      unique_id: LoRa_ID_Status
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
-      value_template: >
-        {{ (value_json['message']|from_json)['id'] }}
-
-    - name: "LoRa ID Temp"
-      unique_id: LoRa_ID_Temp
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
-      value_template: >
-        {{ (value_json['message']|from_json)['tempc'] }}
+        {% set msg = value_json['message']| %}
+        {% set id = (msg|from_json)['id'] %}
+        {% if id == "id7" %}
+          {{ "ok: " + id }}
+        {% else %}
+          {{ "error: " + id }}
+        {% endif %}
         
+    - name: "LoRa ID7 Temp"
+      unique_id: LoRa_ID7_Temp
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      value_template: >
+        {% set msg = value_json['message'] %}
+        {% set id = (msg|from_json)['id'] %}
+        {% set tempc = (msg|from_json)['tempc'] %}
+        {% if id == "id7" and tempc > -99 %}
+          {{ tempc }}
+        {% endif %}
+      unit_of_measurement: "°C"
+
 # EOF
