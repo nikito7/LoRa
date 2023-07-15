@@ -6,11 +6,11 @@ mqtt:
 ###4
     - name: "LoRa ID Raw"
       unique_id: LoRa_ID_Raw
-      state_topic: "home/OMG_ESP32_LORA/LORA2MQTT"
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
 
     - name: "LoRa ID Status"
       unique_id: LoRa_ID_Status
-      state_topic: "home/OMG_ESP32_LORA/LORA2MQTT"
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
         {% set id = value_json.message.id|string %}
         {% if id == "id7" %}
@@ -19,7 +19,7 @@ mqtt:
 
     - name: "LoRa ID Temp"
       unique_id: LoRa_ID_Temp
-      state_topic: "home/OMG_ESP32_LORA/LORA2MQTT"
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
         {% set id = value_json.message.id|string %}
         {% set temp = json_value.message.tempc|float(None) %}
