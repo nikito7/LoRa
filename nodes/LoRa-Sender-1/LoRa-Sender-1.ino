@@ -1,8 +1,12 @@
-// Based in: 
+// Credits 
 // https://github.com/sandeepmistry/arduino-LoRa
 
 #include <LoRa.h>
 #include <ArduinoJson.h>
+
+#define LORA_SCK 14
+#define LORA_MISO 12
+#define LORA_MOSI 13
 
 #define LORA_SS 15
 #define LORA_RST 16
@@ -12,7 +16,11 @@ void setup() {
   Serial.begin(115200);
   while (!Serial);
 
+  SPI.begin();
   LoRa.setPins(LORA_SS, LORA_RST, LORA_DI0);
+  LoRa.enableCrc();
+  LoRa.setSyncWord(0x12);
+
   if (!LoRa.begin(868E6)) {
     Serial.println("Starting LoRa failed!");
     while (1);
@@ -23,26 +31,27 @@ void setup() {
 void loop() {
   static char jsonBuffer[100];
 
-  float temperature = 99;
-  float humidity = 50;
-  float pressure = 999;
+  float tempc = 99;
+  float hum = 50;
+  float pres = 999;
+  float up = millis() / 1000;
 
   StaticJsonDocument<100> doc;
 
-  doc["tempc"] = temperature;
-  doc["hum"] = humidity;
-  doc["pres"] = pressure;
+  doc["id"] = "id7";
+  doc["tempc"] = tempc;
+  doc["hum"] = hum;
+  doc["pres"] = pres;
+  doc["up"] = up;
 
   size_t len = measureJson(doc) + 1;
   serializeJson(doc, jsonBuffer, len);
 
   Serial.println(jsonBuffer);
 
-  if (!LoRa.isTransmitting()) {
-    LoRa.beginPacket();
-    LoRa.print(jsonBuffer);
-    LoRa.endPacket();
-  }
+  LoRa.beginPacket();
+  LoRa.print(jsonBuffer);
+  LoRa.endPacket();
 
   delay(10000);
 }
