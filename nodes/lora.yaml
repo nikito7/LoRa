@@ -9,7 +9,14 @@ mqtt:
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
       value_template: >
         {{ value_json.message }}
-        
+
+    - name: "LoRa ID Msg"
+      unique_id: LoRa_ID_Msg
+      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      value_template: >
+        {% set msg = value_json.message %}
+          {{ msg }}
+
     - name: "LoRa ID Status"
       unique_id: LoRa_ID_Status
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
