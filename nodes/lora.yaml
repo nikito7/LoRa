@@ -11,7 +11,7 @@ mqtt:
         {% set msg = value_json['rssi'] %}
           {{ msg }}
       unit_of_measurement: dBm
-      device_class: signal
+      device_class: signal_strength
       state_class: measurement 
 
     - name: "LoRa ID7 Status"
