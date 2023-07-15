@@ -28,6 +28,7 @@ mqtt:
     - name: "LoRa ID Temp"
       unique_id: LoRa_ID_Temp
       state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      value_template: >
         {% raw %}
           {{ (value_json['message']|from_json)['temp'] }}
         {% endraw %}
