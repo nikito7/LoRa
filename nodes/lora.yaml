@@ -20,7 +20,7 @@ mqtt:
       value_template: >
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
-        {% if id == "id7" %}
+        {% if id == "Node7" %}
           {{ "ok: " + id }}
         {% else %}
           {{ "error: " + id }}
@@ -33,7 +33,7 @@ mqtt:
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
         {% set x = (msg|from_json)['tempc'] %}
-        {% if id == "id7" and x > -99 %}
+        {% if id == "Node7" and x > -99 %}
           {{ x }}
         {% endif %}
       unit_of_measurement: "°C"
@@ -45,7 +45,7 @@ mqtt:
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
         {% set x = (msg|from_json)['up'] %}
-        {% if id == "id7" and x > -1 %}
+        {% if id == "Node7" and x > -1 %}
           {{ x }}
         {% endif %}
       unit_of_measurement: "s"
