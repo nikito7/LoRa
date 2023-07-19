@@ -6,7 +6,7 @@ mqtt:
 ###4
     - name: "LoRa Nodes RSSI"
       unique_id: LoRa_Nodes_RSSI
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      state_topic: "home/easyhan_lora_1/LORAtoMQTT"
       value_template: >
         {% set msg = value_json['rssi'] %}
           {{ msg }}
@@ -16,7 +16,7 @@ mqtt:
 
     - name: "LoRa ID7 Status"
       unique_id: LoRa_ID7_Status
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      state_topic: "home/easyhan_lora_1/LORAtoMQTT"
       value_template: >
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
@@ -28,7 +28,7 @@ mqtt:
         
     - name: "LoRa ID7 Temp"
       unique_id: LoRa_ID7_Temp
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      state_topic: "home/easyhan_lora_1/LORAtoMQTT"
       value_template: >
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
@@ -40,7 +40,7 @@ mqtt:
 
     - name: "LoRa ID7 Uptime"
       unique_id: LoRa_ID7_Uptime
-      state_topic: "home/OMG_ESP32_LORA/LORAtoMQTT"
+      state_topic: "home/easyhan_lora_1/LORAtoMQTT"
       value_template: >
         {% set msg = value_json['message'] %}
         {% set id = (msg|from_json)['id'] %}
