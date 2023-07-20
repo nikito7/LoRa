@@ -1,0 +1,28 @@
+# Home Assistant Package
+# Meshtastic
+
+mqtt:
+#2
+  sensor:
+###4
+    - name: "LoRa GW1 Raw"
+      unique_id: LoRa_GW1_Raw
+      state_topic: "msh/2/json/PublicData/!157538d4"
+      value_template: >
+        {{ value_json.payload.text }}
+
+    - name: "LoRa ID7 Uptime"
+      unique_id: LoRa_ID7_Uptime
+      state_topic: "home/easyhan_lora_1/LORAtoMQTT"
+      value_template: >
+        {% set msg = value_json['message'] %}
+        {% set id = (msg|from_json)['id'] %}
+        {% set x = (msg|from_json)['up'] %}
+        {% if id == "Node7" and x > -1 %}
+          {{ x }}
+        {% endif %}
+      unit_of_measurement: "s"
+
+# EOF
+
+
