@@ -33,29 +33,31 @@ mqtt:
           {{ id }}
         {% endif %}
       
-    - name: "LoRa Sensor Soil Temp"
-      unique_id: LoRa_Sensor_Soil_Temp
+    - name: "LoRa Sensor Soil Temperature"
+      unique_id: LoRa_Sensor_Soil_Temp2
       state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
         {% set x = value_json.payload.t %}
         {% if id == "sensor_soil" and x > -99 and x < 100 %}
           {{ x }}
+        {% else %}
+          {{ is_state('sensor.lora_sensor_soil_temperature') }}
         {% endif %}
-      unit_of_measurement: "°C"
       state_class: measurement
       device_class: temperature
 
-    - name: "LoRa Sensor Soil Hum"
-      unique_id: LoRa_Sensor_Soil_Hum
+    - name: "LoRa Sensor Soil Humidity"
+      unique_id: LoRa_Sensor_Soil_Hum2
       state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
         {% set x = value_json.payload.h %}
         {% if id == "sensor_soil" and x > -99 and x < 100 %}
           {{ x }}
+        {% else %}
+          {{ is_state('sensor.lora_sensor_soil_humidity') }}
         {% endif %}
-      unit_of_measurement: "%"
       state_class: measurement
       device_class: humidity
 
