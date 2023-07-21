@@ -1,0 +1,15 @@
+# Meshtastic Rest API
+
+rest:
+    resource: "http://10.1.0.217/json/report"
+    sensor:
+###
+      - name: "GW1 Rest chu"
+        value_template: "{{ value_json.data.airtime.channel_utilization }}"
+        unit_of_measurement: "%"        
+###
+      - name: "GW1 Rest utx"
+        value_template: "{{ value_json.data.airtime.utilization_tx }}"
+        unit_of_measurement: "%"
+###
+# EOF
