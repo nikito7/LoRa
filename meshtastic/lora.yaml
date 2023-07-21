@@ -7,22 +7,35 @@ mqtt:
 ###4
 #    - name: "LoRa GW1 Raw"
 #      unique_id: LoRa_GW1_Raw
-#      state_topic: "msh/2/json/PublicData/!157538d4"
+#      state_topic: "home/msh/2/json/PublicData/!157538d4"
 #      value_template: >
 #        {{ value_json.payload }}
 ###4
+    - name: "LoRa GW1 Pressure"
+      unique_id: LoRa_GW1_Pres
+      state_topic: "home/msh/2/json/LongFast/!157538d4"
+      value_template: >
+        {% set x = value_json.payload.barometric_pressure|round(1) %}
+        {% if x > 0 %}
+          {{ x }}
+        {% else %}
+          {{ is_state('sensor.lora_gw1_pressure') }}
+        {% endif %}
+      state_class: measurement
+      device_class: pressure
+
     - name: "LoRa Sensor Soil ID"
       unique_id: LoRa_Sensor_Soil_ID
-      state_topic: "msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
         {% if id == "sensor_soil" %}
           {{ id }}
         {% endif %}
-
+      
     - name: "LoRa Sensor Soil Temp"
       unique_id: LoRa_Sensor_Soil_Temp
-      state_topic: "msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
         {% set x = value_json.payload.t %}
@@ -35,7 +48,7 @@ mqtt:
 
     - name: "LoRa Sensor Soil Hum"
       unique_id: LoRa_Sensor_Soil_Hum
-      state_topic: "msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
         {% set x = value_json.payload.h %}
