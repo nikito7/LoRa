@@ -15,7 +15,7 @@ rest:
       - name: "LoRa GW1 Rest AirUtilTX"
         unique_id: MT_LoRa_GW1_Rest_AirUtilTX
         value_template: >
-          {{ value_json.data.airtime.utilization_tx|round(2)|float(None) }}"
+          {{ value_json.data.airtime.utilization_tx|round(2)|float(None) }}
         unit_of_measurement: "%"
         state_class: measurement
 ###
