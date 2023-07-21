@@ -2,14 +2,21 @@
 
 rest:
     resource: "http://10.1.0.217/json/report"
+    scan_interval: 33
     sensor:
 ###
-      - name: "LoRa GW1 Rest chu"
-        value_template: "{{ value_json.data.airtime.channel_utilization }}"
-        unit_of_measurement: "%"        
-###
-      - name: "LoRa GW1 Rest utx"
-        value_template: "{{ value_json.data.airtime.utilization_tx }}"
+      - name: "LoRa GW1 Rest ChUtil"
+        unique_id: MT_LoRa_GW1_Rest_ChUtil
+        value_template: >
+          {{ value_json.data.airtime.channel_utilization|round(2)|float(None) }}
         unit_of_measurement: "%"
+        state_class: measurement
+###
+      - name: "LoRa GW1 Rest AirUtilTX"
+        unique_id: MT_LoRa_GW1_Rest_AirUtilTX
+        value_template: >
+          {{ value_json.data.airtime.utilization_tx|round(2)|float(None) }}"
+        unit_of_measurement: "%"
+        state_class: measurement
 ###
 # EOF
