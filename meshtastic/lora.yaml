@@ -29,6 +29,8 @@ mqtt:
       device_class: pressure
       unit_of_measurement: hPa
 
+### ### ###
+
     - name: "LoRa Sensor Soil ID"
       unique_id: LoRa_Sensor_Soil_ID
       state_topic: "home/msh/2/json/PublicData/!157538d4"
@@ -59,8 +61,8 @@ mqtt:
       state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
-        {% set x = value_json.payload.h|round(0)|float(None) %}
-        {% if id == "sensor_soil" and x > -99 and x < 100 %}
+        {% set x = value_json.payload.h|int(None) %}
+        {% if id == "sensor_soil" and x > -1 and x < 101 %}
           {{ x }}
         {% else %}
           {{ states('sensor.lora_sensor_soil_humidity') }}
