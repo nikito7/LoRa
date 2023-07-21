@@ -8,12 +8,6 @@ mqtt:
 #2
   sensor:
 ###4
-#    - name: "LoRa GW1 Raw"
-#      unique_id: LoRa_GW1_Raw
-#      state_topic: "home/msh/2/json/PublicData/!157538d4"
-#      value_template: >
-#        {{ value_json.payload }}
-###4
     - name: "LoRa GW1 Pressure"
       unique_id: LoRa_GW1_Pres3
       state_topic: "home/msh/2/json/LongFast/!157538d4"
@@ -28,6 +22,21 @@ mqtt:
       state_class: measurement
       device_class: pressure
       unit_of_measurement: hPa
+
+    - name: "LoRa GW1 Temperature"
+      unique_id: LoRa_GW1_Temp3
+      state_topic: "home/msh/2/json/LongFast/!157538d4"
+      value_template: >
+        {% set from = value_json.from %}
+        {% set x = value_json.payload.temperature|round(1)|float(None) %}
+        {% if x > -50 and from == "360003796" %}
+          {{ x }}
+        {% else %}
+          {{ states('sensor.lora_gw1_temperature') }}
+        {% endif %}
+      state_class: measurement
+      device_class: temperature
+      unit_of_measurement: "°C"
 
 ### ### ###
 
