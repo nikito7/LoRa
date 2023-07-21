@@ -1,5 +1,8 @@
 # Home Assistant Package
 # Meshtastic
+# Bridge:
+# - mqtt to mqtt
+# - msh to home/msh
 
 mqtt:
 #2
@@ -34,6 +37,7 @@ mqtt:
         {% if id == "sensor_soil" %}
           {{ id }}
         {% endif %}
+      icon: "mdi:identifier"
       
     - name: "LoRa Sensor Soil Temperature"
       unique_id: LoRa_Sensor_Soil_Temp
@@ -63,6 +67,7 @@ mqtt:
         {% endif %}
       state_class: measurement
       device_class: humidity
+      unit_of_measurement: "%"
 
 # EOF
 
