@@ -5,11 +5,11 @@ mqtt:
 #2
   sensor:
 ###4
-    - name: "LoRa GW1 Raw"
-      unique_id: LoRa_GW1_Raw
-      state_topic: "msh/2/json/PublicData/!157538d4"
-      value_template: >
-        {{ value_json.payload }}
+#    - name: "LoRa GW1 Raw"
+#      unique_id: LoRa_GW1_Raw
+#      state_topic: "msh/2/json/PublicData/!157538d4"
+#      value_template: >
+#        {{ value_json.payload }}
 ###4
     - name: "LoRa Sensor Soil ID"
       unique_id: LoRa_Sensor_Soil_ID
