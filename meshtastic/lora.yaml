@@ -15,7 +15,7 @@ mqtt:
 #        {{ value_json.payload }}
 ###4
     - name: "LoRa GW1 Pressure"
-      unique_id: LoRa_GW1_Pres2
+      unique_id: LoRa_GW1_Pres3
       state_topic: "home/msh/2/json/LongFast/!157538d4"
       value_template: >
         {% set from = value_json.from %}
@@ -42,7 +42,7 @@ mqtt:
       icon: "mdi:identifier"
       
     - name: "LoRa Sensor Soil Temperature"
-      unique_id: LoRa_Sensor_Soil_Temp2
+      unique_id: LoRa_Sensor_Soil_Temp3
       state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
@@ -57,7 +57,7 @@ mqtt:
       unit_of_measurement: "°C"
 
     - name: "LoRa Sensor Soil Humidity"
-      unique_id: LoRa_Sensor_Soil_Hum2
+      unique_id: LoRa_Sensor_Soil_Hum3
       state_topic: "home/msh/2/json/PublicData/!157538d4"
       value_template: >
         {% set id = value_json.payload.id %}
