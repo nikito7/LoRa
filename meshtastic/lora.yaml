@@ -53,9 +53,13 @@ mqtt:
       unique_id: LoRa_Sensor1_ID
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% set id = value_json.payload.id|string %}
-        {% if id == "Sensor1" %}
-          {{ id }}
+        {% if value_json.from|int(0) == 360003796 %}
+          {% set id = value_json.payload.id|string %}
+          {% if id == "Sensor1" %}
+            {{ id }}
+          {% else %}
+            {{ states('sensor.lora_sensor1_id') }}
+          {% endif %}
         {% endif %}
       icon: "mdi:identifier"
       
@@ -63,12 +67,14 @@ mqtt:
       unique_id: LoRa_Sensor1_Temp
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% set id = value_json.payload.id %}
-        {% set x = value_json.payload.t|round(1)|float(None) %}
-        {% if id == "Sensor1" and x > -99 and x < 100 %}
-          {{ x }}
-        {% else %}
-          {{ states('sensor.lora_sensor_soil_temperature') }}
+        {% if value_json.from|int(0) == 360003796 %}
+          {% set id = value_json.payload.id %}
+          {% set x = value_json.payload.t|round(1)|float(None) %}
+          {% if id == "Sensor1" and x > -99 and x < 100 %}
+            {{ x }}
+          {% else %}
+            {{ states('sensor.lora_sensor1_temperature') }}
+          {% endif %}
         {% endif %}
       state_class: measurement
       device_class: temperature
@@ -78,13 +84,13 @@ mqtt:
       unique_id: LoRa_Sensor1_Hum
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% if value_json.payload %}
+        {% if value_json.from|int(0) == 360003796 %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.h|int(None) %}
           {% if id == "Sensor1" and x > -1 and x < 101 %}
             {{ x }}
           {% else %}
-            {{ states('sensor.lora_sensor_soil_humidity') }}
+            {{ states('sensor.lora_sensor1_humidity') }}
           {% endif %}
         {% endif %}
       state_class: measurement
@@ -97,10 +103,12 @@ mqtt:
       unique_id: LoRa_Sensor64_ID
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% set msg = value_json.payload.text|string|base64_decode %}
-        {% set id = (msg|from_json).id|string %}
-        {% if id == "Sensor64" %}
-          {{ id }}
+        {% if value_json.from|int(0) == 360003796 %}
+          {% set msg = value_json.payload.text|string|base64_decode %}
+          {% set id = (msg|from_json).id|string %}
+          {% if id == "Sensor64" %}
+            {{ id }}
+          {% endif %}
         {% endif %}
       icon: "mdi:identifier"
 
