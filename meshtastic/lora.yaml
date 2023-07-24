@@ -49,8 +49,8 @@ mqtt:
 ### PublicData ###
 
 ###4
-    - name: "LoRa Sensor Soil ID"
-      unique_id: LoRa_Sensor_Soil_ID
+    - name: "LoRa Sensor1 ID"
+      unique_id: LoRa_Sensor1_ID
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% set id = value_json.payload.id|string %}
@@ -59,8 +59,8 @@ mqtt:
         {% endif %}
       icon: "mdi:identifier"
       
-    - name: "LoRa Sensor Soil Temperature"
-      unique_id: LoRa_Sensor_Soil_Temp3
+    - name: "LoRa Sensor1 Temperature"
+      unique_id: LoRa_Sensor1_Temp
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% set id = value_json.payload.id %}
@@ -74,8 +74,8 @@ mqtt:
       device_class: temperature
       unit_of_measurement: "°C"
 
-    - name: "LoRa Sensor Soil Humidity"
-      unique_id: LoRa_Sensor_Soil_Hum3
+    - name: "LoRa Sensor1 Humidity"
+      unique_id: LoRa_Sensor1_Hum
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% if value_json.payload %}
@@ -98,7 +98,7 @@ mqtt:
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% set msg = value_json.payload.id|string %}
-        {% set id = (msg.from_json).id|string %}
+        {% set id = (msg|from_json).id|string %}
         {% if id == "Sensor64" %}
           {{ id }}
         {% endif %}
