@@ -18,6 +18,8 @@ mqtt:
             {{ "ON" }}
           {% elif msg == "turn_off_pump" %}
             {{ "OFF" }}
+          {% else %}
+            {{ states('binary_sensor.lora_relay1_cmd') }}
           {% endif %}
         {% endif %}
       #sensor#end#
