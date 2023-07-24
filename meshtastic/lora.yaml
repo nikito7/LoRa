@@ -12,7 +12,7 @@ mqtt:
       unique_id: LoRa_GW1_Pres3
       state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
-        {% if value_json.from|string == "360003796" %}
+        {% if value_json.from|int(0) = 360003796 %}
           {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
           {% if x > 0 %}
            {{ x }}
@@ -30,12 +30,14 @@ mqtt:
       unique_id: LoRa_GW1_Temp3
       state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
-        {% set from = value_json.from|string %}
-        {% set x = value_json.payload.temperature|round(1)|float(None) %}
-        {% if x > -50 and from == "360003796" %}
-          {{ x }}
-        {% else %}
-          {{ states('sensor.lora_gw1_temperature') }}
+        {% if value_json.from|int(0) = 360003796 %}
+          {% set from = value_json.from|string %}
+          {% set x = value_json.payload.temperature|round(1)|float(None) %}
+          {% if x > -50 and from == "360003796" %}
+            {{ x }}
+          {% else %}
+            {{ states('sensor.lora_gw1_temperature') }}
+          {% endif %}
         {% endif %}
       state_class: measurement
       device_class: temperature
