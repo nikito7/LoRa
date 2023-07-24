@@ -12,7 +12,7 @@ mqtt:
       unique_id: LoRa_GW1_Pres3
       state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
-        {% if value_json.from == "360003796" %}
+        {% if value_json.from|string == "360003796" %}
           {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
           {% if x > 0 %}
            {{ x }}
