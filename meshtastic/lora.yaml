@@ -10,7 +10,7 @@ mqtt:
 ###4
     - name: "LoRa GW1 Pressure"
       unique_id: LoRa_GW1_Pres3
-      state_topic: "home/msh/2/json/LongFast/!157538d4"
+      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
         {% set from = value_json.from|string %}
         {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
@@ -25,7 +25,7 @@ mqtt:
 
     - name: "LoRa GW1 Temperature"
       unique_id: LoRa_GW1_Temp3
-      state_topic: "home/msh/2/json/LongFast/!157538d4"
+      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
         {% set from = value_json.from|string %}
         {% set x = value_json.payload.temperature|round(1)|float(None) %}
@@ -42,7 +42,7 @@ mqtt:
 
     - name: "LoRa Sensor Soil ID"
       unique_id: LoRa_Sensor_Soil_ID
-      state_topic: "home/msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% set id = value_json.payload.id|string %}
         {% if id == "sensor_soil" %}
@@ -52,7 +52,7 @@ mqtt:
       
     - name: "LoRa Sensor Soil Temperature"
       unique_id: LoRa_Sensor_Soil_Temp3
-      state_topic: "home/msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
         {% set id = value_json.payload.id %}
         {% set x = value_json.payload.t|round(1)|float(None) %}
@@ -67,14 +67,16 @@ mqtt:
 
     - name: "LoRa Sensor Soil Humidity"
       unique_id: LoRa_Sensor_Soil_Hum3
-      state_topic: "home/msh/2/json/PublicData/!157538d4"
+      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% set id = value_json.payload.id %}
-        {% set x = value_json.payload.h|int(None) %}
-        {% if id == "sensor_soil" and x > -1 and x < 101 %}
-          {{ x }}
-        {% else %}
-          {{ states('sensor.lora_sensor_soil_humidity') }}
+        {% if is defined value_json.payload %}
+          {% set id = value_json.payload.id %}
+          {% set x = value_json.payload.h|int(None) %}
+          {% if id == "sensor_soil" and x > -1 and x < 101 %}
+            {{ x }}
+          {% else %}
+            {{ states('sensor.lora_sensor_soil_humidity') }}
+          {% endif %}
         {% endif %}
       state_class: measurement
       device_class: humidity
