@@ -12,12 +12,14 @@ mqtt:
       unique_id: LoRa_GW1_Pres3
       state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
       value_template: >
-        {% set from = value_json.from|string %}
-        {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
-        {% if x > 0 and from == "360003796" %}
-          {{ x }}
-        {% else %}
-          {{ states('sensor.lora_gw1_pressure') }}
+        {% if value_json.payload.barometric_pressure %}
+          {% set from = value_json.from|string %}
+          {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
+          {% if x > 0 and from == "360003796" %}
+            {{ x }}
+          {% else %}
+            {{ states('sensor.lora_gw1_pressure') }}
+          {% endif %}
         {% endif %}
       state_class: measurement
       device_class: pressure
