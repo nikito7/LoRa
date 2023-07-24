@@ -69,7 +69,7 @@ mqtt:
       unique_id: LoRa_Sensor_Soil_Hum3
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% if is defined value_json.payload %}
+        {% if is_defined value_json.payload %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.h|int(None) %}
           {% if id == "sensor_soil" and x > -1 and x < 101 %}
