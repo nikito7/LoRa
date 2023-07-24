@@ -24,7 +24,7 @@ mqtt:
             {% endif %}
           {% endif %}
         {% endif %}
-      device_class: switch
+      device_class: power
 
 #2
   sensor:
