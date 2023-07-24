@@ -97,7 +97,7 @@ mqtt:
       unique_id: LoRa_Sensor64_ID
       state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
       value_template: >
-        {% set msg = value_json.payload.id|string %}
+        {% set msg = value_json.payload.id|string|b64decode %}
         {% set id = (msg|from_json).id|string %}
         {% if id == "Sensor64" %}
           {{ id }}
