@@ -10,19 +10,21 @@ mqtt:
 ###4
     - name: LoRa Relay1 Cmd
       unique_id: LoRa_Relay1_Cmd
-      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
+      state_topic: "home/msh/2/json/PrivateData/!1fe9fc00"
       value_template: >
         {% if value_json.from|int(0) == 360003796 %}
-          {% set msg = value_json.payload.text|string %}
-          {% if msg == "turn_on_pump" %}
-            {{ "ON" }}
-          {% elif msg == "turn_off_pump" %}
-            {{ "OFF" }}
-          {% else %}
-            {{ states('binary_sensor.lora_relay1_cmd') }}
+          {% if value_json.payload.text %}
+            {% set msg = value_json.payload.text|string %}
+            {% if msg == "turn_on_pump" %}
+              {{ "ON" }}
+            {% elif msg == "turn_off_pump" %}
+              {{ "OFF" }}
+            {% else %}
+              {{ states('binary_sensor.lora_relay1_cmd') }}
+            {% endif %}
           {% endif %}
         {% endif %}
-      #sensor#end#
+      device_class: switch
 
 #2
   sensor:
