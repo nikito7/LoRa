@@ -16,7 +16,7 @@ mqtt:
           {% set msg = value_json.payload.text|string %}
           {% if msg == "turn_on_pump" %}
             {{ "ON" }}
-          {% elif msg == "turn_off_pump %}
+          {% elif msg == "turn_off_pump" %}
             {{ "OFF" }}
           {% endif %}
         {% endif %}
