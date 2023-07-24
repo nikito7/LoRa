@@ -12,7 +12,7 @@ mqtt:
       unique_id: LoRa_Relay1_Cmd
       state_topic: "home/msh/2/json/PrivateData/!1fe9fc00"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == 535428096 %}
           {% if value_json.payload.text is defined %}
             {% set msg = value_json.payload.text|string %}
             {% if msg == "turn_on_pump" %}
