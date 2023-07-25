@@ -7,8 +7,8 @@
 command_line:
   - switch:
       name: LoRa Relay1 Send
-      command_on: "./bot/init.sh"
-      command_off: "./bot/init.sh"
+      command_on: "./bot/init.sh ON"
+      command_off: "./bot/init.sh OFF"
       command_timeout: 30
 
 ### ### ###
