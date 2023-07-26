@@ -42,15 +42,13 @@ mqtt:
 
 ###4
     - name: "LoRa GW1 Pressure"
-      unique_id: LoRa_GW1_Pres3
+      unique_id: LoRa_GW1_Press
       state_topic: "home/msh/2/json/LongFast/!faf68748"
       value_template: >
         {% if value_json.from|int(0) == 360003796 %}
           {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
           {% if x > 0 %}
            {{ x }}
-          {% else %}
-            {{ states('sensor.lora_gw1_pressure') }}
           {% endif %}
         {% else %}
           {{ states('sensor.lora_gw1_pressure') }}
@@ -129,21 +127,24 @@ mqtt:
 
 ### Sensor64 ###
 
-    - name: "LoRa Sensor64 Raw"
-      unique_id: LoRa_Sensor64_Raw
-      state_topic: "home/msh/2/json/niki4chan/!faf68748"
-      value_template: "{{ value_json.payload }}"
-
     - name: "LoRa Sensor64 ID"
       unique_id: LoRa_Sensor64_ID
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
         {% if value_json.from|int(0) == -84506808 %}
-          {% set msg = value_json.payload.text|string|base64_decode %}
-          {% set id = (msg|from_json).id|string %}
-          {% if id == "Sensor64" %}
-            {{ id }}
+          {% if value_json.payload.text is defined %}
+            {% set msg = value_json.payload.text|string|base64_decode %}
+            {% set id = (msg|from_json).id|string %}
+            {% if id == "Sensor64" %}
+              {{ id }}
+            {% else %}
+              {{ states('sensor.lora_sensor64_id') }}
+            {% endif %}
+          {% else %}
+            {{ states('sensor.lora_sensor64_id') }}
           {% endif %}
+        {% else %}
+          {{ states('sensor.lora_sensor64_id') }}
         {% endif %}
       icon: "mdi:identifier"
 
