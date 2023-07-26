@@ -96,16 +96,16 @@ mqtt:
     - name: "LoRa Sensor1 Temperature"
       unique_id: LoRa_Sensor1_Temp
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
-      value_template: >
-        {% if value_json.from|int(0) == -84506808 %}
-          {% set id = value_json.payload.id %}
-          {% set x = value_json.payload.t|round(1)|float(None) %}
-          {% if id == "Sensor1" and x > -99 and x < 100 %}
-            {{ x }}
-          {% else %}
-            {{ states('sensor.lora_sensor1_temperature') }}
-          {% endif %}
-        {% endif %}
+      value_template: "{{ value_json }}"
+       # {% if value_json.from|int(0) == -84506808 %}
+        #  {% set id = value_json.payload.id %}
+        #  {% set x = value_json.payload.t|round(1)|float(None) %}
+        #  {% if id == "Sensor1" and x > -99 and x < 100 %}
+         #   {{ x }}
+        #  {% else %}
+        #    {{ states('sensor.lora_sensor1_temperature') }}
+        #  {% endif %}
+       # {% endif %}
       state_class: measurement
       device_class: temperature
       unit_of_measurement: "°C"
