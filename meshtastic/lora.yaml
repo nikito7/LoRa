@@ -83,7 +83,7 @@ mqtt:
       unique_id: LoRa_Sensor1_ID
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == -84506808 %}
+        {% if value_json.to|int(0) == 360003796 %}
           {% set id = value_json.payload.id|string %}
           {% if id == "Sensor1" %}
             {{ id }}
@@ -97,7 +97,7 @@ mqtt:
       unique_id: LoRa_Sensor1_Temp
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == -84506808 %}
+        {% if value_json.to|int(0) == 360003796 %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.t|round(1)|float(None) %}
           {% if id == "Sensor1" and x > -99 and x < 100 %}
@@ -114,7 +114,7 @@ mqtt:
       unique_id: LoRa_Sensor1_Hum
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == -84506808 %}
+        {% if value_json.to|int(0) == 360003796 %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.h|int(None) %}
           {% if id == "Sensor1" and x > -1 and x < 101 %}
@@ -133,7 +133,7 @@ mqtt:
       unique_id: LoRa_Sensor64_ID
       state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == -84506808 %}
+        {% if value_json.to|int(0) == 360003796 %}
           {% set msg = value_json.payload.text|string|base64_decode %}
           {% set id = (msg|from_json).id|string %}
           {% if id == "Sensor64" %}
