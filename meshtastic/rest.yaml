@@ -1,7 +1,8 @@
 # Meshtastic Rest API
 
 rest:
-    resource: "http://10.1.0.217/json/report"
+#2
+  - resource: "http://10.1.0.217/json/report"
     scan_interval: 33
     sensor:
 ###
@@ -14,6 +15,25 @@ rest:
 ###
       - name: "LoRa GW1 Rest AirUtilTX"
         unique_id: MT_LoRa_GW1_Rest_AirUtilTX
+        value_template: >
+          {{ value_json.data.airtime.utilization_tx|round(2)|float(None) }}
+        unit_of_measurement: "%"
+        state_class: measurement
+
+#2
+  - resource: "http://10.1.0.216/json/report"
+    scan_interval: 33
+    sensor:
+###
+      - name: "LoRa GW0 Rest ChUtil"
+        unique_id: MT_LoRa_GW0_Rest_ChUtil
+        value_template: >
+          {{ value_json.data.airtime.channel_utilization|round(2)|float(None) }}
+        unit_of_measurement: "%"
+        state_class: measurement
+###
+      - name: "LoRa GW0 Rest AirUtilTX"
+        unique_id: MT_LoRa_GW0_Rest_AirUtilTX
         value_template: >
           {{ value_json.data.airtime.utilization_tx|round(2)|float(None) }}
         unit_of_measurement: "%"
