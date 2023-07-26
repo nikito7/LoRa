@@ -19,7 +19,7 @@ mqtt:
 ###4
     - name: LoRa Relay1 Cmd
       unique_id: LoRa_Relay1_Cmd
-      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
+      state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
         {% if value_json.from|int(0) == 535428096 %}
           {% if value_json.payload.text is defined %}
@@ -43,9 +43,9 @@ mqtt:
 ###4
     - name: "LoRa GW1 Pressure"
       unique_id: LoRa_GW1_Pres3
-      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
+      state_topic: "home/msh/2/json/LongFast/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
           {% if x > 0 %}
            {{ x }}
@@ -61,12 +61,12 @@ mqtt:
 
     - name: "LoRa GW1 Temperature"
       unique_id: LoRa_GW1_Temp3
-      state_topic: "home/msh/2/json/LongFast/!1fe9fc00"
+      state_topic: "home/msh/2/json/LongFast/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set from = value_json.from|string %}
           {% set x = value_json.payload.temperature|round(1)|float(None) %}
-          {% if x > -50 and from == "360003796" %}
+          {% if x > -50 %}
             {{ x }}
           {% else %}
             {{ states('sensor.lora_gw1_temperature') }}
@@ -81,9 +81,9 @@ mqtt:
 ###4
     - name: "LoRa Sensor1 ID"
       unique_id: LoRa_Sensor1_ID
-      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
+      state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set id = value_json.payload.id|string %}
           {% if id == "Sensor1" %}
             {{ id }}
@@ -95,9 +95,9 @@ mqtt:
       
     - name: "LoRa Sensor1 Temperature"
       unique_id: LoRa_Sensor1_Temp
-      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
+      state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.t|round(1)|float(None) %}
           {% if id == "Sensor1" and x > -99 and x < 100 %}
@@ -112,9 +112,9 @@ mqtt:
 
     - name: "LoRa Sensor1 Humidity"
       unique_id: LoRa_Sensor1_Hum
-      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
+      state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set id = value_json.payload.id %}
           {% set x = value_json.payload.h|int(None) %}
           {% if id == "Sensor1" and x > -1 and x < 101 %}
@@ -131,9 +131,9 @@ mqtt:
 
     - name: "LoRa Sensor64 ID"
       unique_id: LoRa_Sensor64_ID
-      state_topic: "home/msh/2/json/PublicData/!1fe9fc00"
+      state_topic: "home/msh/2/json/niki4chan/!faf68748"
       value_template: >
-        {% if value_json.from|int(0) == 360003796 %}
+        {% if value_json.from|int(0) == -84506808 %}
           {% set msg = value_json.payload.text|string|base64_decode %}
           {% set id = (msg|from_json).id|string %}
           {% if id == "Sensor64" %}
