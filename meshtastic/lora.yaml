@@ -58,8 +58,8 @@ mqtt:
       value_template: >
         {% if value_json.payload.text is defined %}
           {% if value_json.from|int(0) == 360003796 %}
-            {% set msg = value_json.payload.text|string %}
-              {{ msg }}
+          {% set msg = value_json.payload.text|string %}
+            {{ msg }}
           {% endif %}
         {% else %}
           {{ states('sensor.lora_sensor64_raw') }}
