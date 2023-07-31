@@ -15,7 +15,7 @@ mqtt:
 ###4
     - name: "LoRa GW1 Pressure"
       unique_id: LoRa_GW1_Press
-      state_topic: "home/msh/2/json/LongFast/!faf68748"
+      state_topic: "home/msh/2/json/LongFast/!157538d4"
       value_template: >
         {% if value_json.payload.barometric_pressure is defined %}
           {% if value_json.from|int(0) == 360003796 %}
@@ -33,7 +33,7 @@ mqtt:
 
     - name: "LoRa GW1 Temperature"
       unique_id: LoRa_GW1_Temp
-      state_topic: "home/msh/2/json/LongFast/!faf68748"
+      state_topic: "home/msh/2/json/LongFast/!157538d4"
       value_template: >
         {% if value_json.payload.temperature is defined %}
           {% if value_json.from|int(0) == 360003796 %}
@@ -52,68 +52,12 @@ mqtt:
 ### Data ###
 
 ###4
-    - name: "LoRa Sensor1 ID"
-      unique_id: LoRa_Sensor1_ID
-      state_topic: "home/msh/2/json/Data/!faf68748"
-      value_template: >
-        {% if value_json.payload.id is defined %}
-          {% if value_json.from|int(0) == -84506808 %}
-            {% set id = value_json.payload.id|string %}
-            {% if id == "Sensor1" %}
-              {{ id }}
-            {% endif %}
-          {% endif %}
-        {% else %}
-           {{ states('sensor.lora_sensor1_id') }}
-        {% endif %}
-      icon: "mdi:identifier"
-      
-    - name: "LoRa Sensor1 Temperature"
-      unique_id: LoRa_Sensor1_Temp
-      state_topic: "home/msh/2/json/Data/!faf68748"
-      value_template: >
-        {% if value_json.payload.t is defined %}
-          {% if value_json.from|int(0) == -84506808 %}
-            {% set id = value_json.payload.id %}
-            {% set x = value_json.payload.t|round(1)|float(None) %}
-            {% if id == "Sensor1" and x > -99 and x < 100 %}
-              {{ x }}
-            {% endif %}
-          {% endif %}
-        {% else %}
-           {{ states('sensor.lora_sensor1_temperature') }}
-        {% endif %}
-      state_class: measurement
-      device_class: temperature
-      unit_of_measurement: "°C"
-
-    - name: "LoRa Sensor1 Humidity"
-      unique_id: LoRa_Sensor1_Hum
-      state_topic: "home/msh/2/json/niki4chan/!faf68748"
-      value_template: >
-        {% if value_json.payload.h is defined %}
-          {% if value_json.from|int(0) == -84506808 %}
-            {% set id = value_json.payload.id %}
-            {% set x = value_json.payload.h|int(None) %}
-            {% if id == "Sensor1" and x > -1 and x < 101 %}
-              {{ x }}
-            {% endif %}
-          {% endif %}
-        {% else %}
-          {{ states('sensor.lora_sensor1_humidity') }}
-        {% endif %}
-      state_class: measurement
-      device_class: humidity
-      unit_of_measurement: "%"
-
-### Sensor64 ###
-
     - name: "LoRa Sensor64 ID"
       unique_id: LoRa_Sensor64_ID
-      state_topic: "home/msh/2/json/niki4chan/!faf68748"
+      state_topic: "home/msh/2/json/Data/!157538d4"
       value_template: >
         {% if value_json.payload.text is defined %}
-          {% if value_json.from|int(0) == -84506808 %}
+          {% if value_json.from|int(0) == 360003796 %}
             {% set msg = value_json.payload.text|string|base64_decode %}
             {% set id = (msg|from_json).id|string %}
             {% if id == "Sensor64" %}
