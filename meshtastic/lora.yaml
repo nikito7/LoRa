@@ -52,21 +52,18 @@ mqtt:
 ### Data ###
 
 ###4
-    - name: "LoRa Sensor64 ID"
-      unique_id: LoRa_Sensor64_ID
+    - name: "LoRa Sensor64 Raw"
+      unique_id: LoRa_Sensor64_Raw
       state_topic: "home/msh/2/json/Data/!157538d4"
       value_template: >
         {% if value_json.payload.text is defined %}
           {% if value_json.from|int(0) == 360003796 %}
-            {% set msg = value_json.payload.text|string|base64_decode %}
-            {% set id = (msg|from_json).id|string %}
-            {% if id == "Sensor64" %}
-              {{ id }}
-            {% endif %}
+            {% set msg = value_json.payload.text|string %}
+              {{ msg }}
           {% endif %}
         {% else %}
-          {{ states('sensor.lora_sensor64_id') }}
+          {{ states('sensor.lora_sensor64_raw') }}
         {% endif %}
-      icon: "mdi:identifier"
+      icon: "mdi:chip"
 
 # EOF
