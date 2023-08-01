@@ -17,15 +17,15 @@ mqtt:
       unique_id: LoRa_GW1_Press
       state_topic: "home/msh/2/json/LongFast/!157538d4"
       value_template: >
-        {% if value_json.payload.barometric_pressure is defined %}
-          {% if value_json.from|int(0) == 360003796 %}
-            {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
-            {% if x > 0 %}
-             {{ x }}
+        {% if value_json.payload is defined %}
+          {% if value_json.payload.barometric_pressure is defined %}
+            {% if value_json.from|int(0) == 360003796 %}
+              {% set x = value_json.payload.barometric_pressure|round(1)|float(None) %}
+              {% if x > 0 %}
+               {{ x }}
+              {% endif %}
             {% endif %}
           {% endif %}
-        {% else %}
-          {{ states('sensor.lora_gw1_pressure') }}
         {% endif %}
       state_class: measurement
       device_class: pressure
@@ -35,15 +35,15 @@ mqtt:
       unique_id: LoRa_GW1_Temp
       state_topic: "home/msh/2/json/LongFast/!157538d4"
       value_template: >
-        {% if value_json.payload.temperature is defined %}
-          {% if value_json.from|int(0) == 360003796 %}
-            {% set x = value_json.payload.temperature|round(1)|float(None) %}
-            {% if x > -50 %}
-              {{ x }}
+        {% if value_json.payload is defined %}
+          {% if value_json.payload.temperature is defined %}
+            {% if value_json.from|int(0) == 360003796 %}
+              {% set x = value_json.payload.temperature|round(1)|float(None) %}
+              {% if x > -50 %}
+                {{ x }}
+              {% endif %}
             {% endif %}
           {% endif %}
-        {% else %}
-          {{ states('sensor.lora_gw1_temperature') }}
         {% endif %}
       state_class: measurement
       device_class: temperature
@@ -52,18 +52,5 @@ mqtt:
 ### Data ###
 
 ###4
-    - name: "LoRa Sensor64 Raw"
-      unique_id: LoRa_Sensor64_Raw
-      state_topic: "home/msh/2/json/Data/!157538d4"
-      value_template: >
-        {% if value_json.payload.text is defined %}
-          {% if value_json.from|int(0) == 360003796 %}
-          {% set msg = value_json.payload.text|string %}
-            {{ msg }}
-          {% endif %}
-        {% else %}
-          {{ states('sensor.lora_sensor64_raw') }}
-        {% endif %}
-      icon: "mdi:chip"
 
 # EOF
