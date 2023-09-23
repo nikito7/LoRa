@@ -24,7 +24,7 @@ mqtt:
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061445/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
-          {{ value_json.uplink_message.rx_metadata|from_json.rssi }}
+          {{ value_json.uplink_message.rx_metadata|string|from_json.rssi }}
         {% endif %}
       state_class: measurement
       unit_of_measurement: dBm
