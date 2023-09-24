@@ -28,7 +28,7 @@ mqtt:
           {{ x }}
         {% endif %}
       state_class: measurement
-      device_class: signal
+      device_class: signal_strength
       unit_of_measurement: dBm
 ###4
 
