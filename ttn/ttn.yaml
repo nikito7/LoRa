@@ -19,15 +19,14 @@ mqtt:
         {% endif %}
       state_class: measurement
 ###4
-    - name: "LoRa TTN rssi"
-      unique_id: LoRa_TTN_rssi
+    - name: "LoRa TTN rx"
+      unique_id: LoRa_TTN_rx
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061445/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
-          {{ value_json.uplink_message.rx_metadata|string|from_json.rssi }}
+          {% set msg = value_json.uplink_message.rx_metadata|string %}
+            {{ x }}
         {% endif %}
-      state_class: measurement
-      unit_of_measurement: dBm
 ###4
 
 # EOF
