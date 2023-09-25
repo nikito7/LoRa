@@ -31,17 +31,20 @@ void setup() {
 void loop() {
   static char jsonBuffer[100];
 
-  float tempc = 99;
-  float hum = 50;
-  float pres = 999;
+  float tempc = 33;
+  float hum = 77;
+  float moi = 88;
+  float pres = 1009;
   float up = millis() / 1000;
 
-  StaticJsonDocument<100> doc;
+  StaticJsonDocument<200> doc;
 
-  doc["id"] = "id7";
+  doc["id"] = "Node7";
   doc["tempc"] = tempc;
   doc["hum"] = hum;
   doc["pres"] = pres;
+  doc["moi"] = moi;
+  doc["model"] = "esp8266dev";
   doc["up"] = up;
 
   size_t len = measureJson(doc) + 1;
@@ -53,7 +56,7 @@ void loop() {
   LoRa.print(jsonBuffer);
   LoRa.endPacket();
 
-  delay(10000);
+  delay(21000);
 }
 
 // EOF
