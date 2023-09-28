@@ -1,4 +1,5 @@
-// Arduino Nano
+// Arduino Nano, Modbus, LoRa, edpbox, rs485.
+// Status: Working Demo 2023-09-28.
 
 #include <LoRa.h>
 #include <ArduinoJson.h>
@@ -47,11 +48,12 @@ void loop() {
   // modbus
   
   int modbus = -1;
+  uint16_t volt;
 
   if (!ModbusRTUClient.requestFrom(1, INPUT_REGISTERS, 0x006c, 1)) {
     modbus = 1;
   } else {
-    short rawtemperature = ModbusRTUClient.read();
+    volt = ModbusRTUClient.read();
     modbus = 0;
   }
 
@@ -59,7 +61,6 @@ void loop() {
 
   static char jsonBuffer[100];
 
-  float tempc = 99;
   float hum = 50;
   float pres = 999;
   float up = millis() / 1000;
@@ -68,11 +69,11 @@ void loop() {
   StaticJsonDocument<100> doc;
 
   doc["id"] = "LoRa_Node7";
+  doc["volt"] = volt;
   doc["model"] = "easyhan.pt";
-  doc["tempc"] = tempc;
-  doc["enc"] = enc;
   doc["modbus"] = modbus;
   doc["rsdebug"] = rsdebug;
+  doc["enc"] = enc;
   doc["moi"] = up;
 
   size_t len = measureJson(doc) + 1;
