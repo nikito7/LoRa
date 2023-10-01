@@ -1,5 +1,9 @@
 // Credits 
 // https://github.com/sandeepmistry/arduino-LoRa
+// ESP8266
+// No RST
+// Sender to openmqttgateway
+// Status: ok (2023-10-01)
 
 #include <LoRa.h>
 #include <ArduinoJson.h>
@@ -9,7 +13,7 @@
 #define LORA_MOSI 13
 
 #define LORA_SS 15
-#define LORA_RST 16
+#define LORA_RST -1
 #define LORA_DI0 5
 
 void setup() {
@@ -39,7 +43,7 @@ void loop() {
 
   StaticJsonDocument<200> doc;
 
-  doc["id"] = "Node7";
+  doc["id"] = "Node7_esp8266";
   doc["tempc"] = tempc;
   doc["hum"] = hum;
   doc["pres"] = pres;
