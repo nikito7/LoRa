@@ -12,7 +12,7 @@ mqtt:
 ###4
     - name: "LoRa TTN Counter"
       unique_id: LoRa_TTN_Counter
-      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061445/up"
+      state_topic: "home/v3/nikito-app@ttn/devices/+/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {{ value_json.uplink_message.f_cnt }}
@@ -21,7 +21,7 @@ mqtt:
 ###4
     - name: "LoRa TTN rssi"
       unique_id: LoRa_TTN_rssi
-      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061445/up"
+      state_topic: "home/v3/nikito-app@ttn/devices/+/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
         {% set x = value_json.uplink_message.rx_metadata.0.rssi %}
