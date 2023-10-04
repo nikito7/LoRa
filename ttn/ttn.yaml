@@ -10,8 +10,8 @@ mqtt:
 #2
   sensor:
 ###4
-    - name: "LoRa TTN Counter"
-      unique_id: LoRa_TTN_Counter
+    - name: "EB5 LoRa Counter"
+      unique_id: EB5_LoRa_Counter
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
@@ -19,8 +19,8 @@ mqtt:
         {% endif %}
       state_class: measurement
 ###4
-    - name: "LoRa TTN rssi"
-      unique_id: LoRa_TTN_rssi
+    - name: "EB5 LoRa rssi"
+      unique_id: EB5_LoRa_rssi
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
