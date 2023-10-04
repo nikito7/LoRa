@@ -10,7 +10,7 @@ mqtt:
 #2
   sensor:
 ###4
-    - name: "EB5 LoRa Counter"
+    - name: "LoRa Counter"
       unique_id: EB5_LoRa_Counter
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
@@ -18,8 +18,13 @@ mqtt:
           {{ value_json.uplink_message.f_cnt }}
         {% endif %}
       state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+        name: EB5
+        model: Easy HAN
+        manufacturer: nikito7
 ###4
-    - name: "EB5 LoRa rssi"
+    - name: "LoRa rssi"
       unique_id: EB5_LoRa_rssi
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
@@ -30,10 +35,12 @@ mqtt:
       state_class: measurement
       device_class: signal_strength
       unit_of_measurement: dBm
+      device:
+        identifiers: nikito7-EB5
 
-########### HAN ###########
+########### HAN ##########
 ###4
-    - name: "EB5 Clock"
+    - name: "Clock"
       unique_id: EB5_Clock
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
@@ -48,7 +55,7 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
-    - name: "EB5 Voltage L1"
+    - name: "Voltage L1"
       unique_id: EB5_VolL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
@@ -64,7 +71,7 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
-    - name: "EB5 Current L1"
+    - name: "Current L1"
       unique_id: EB5_CurL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
