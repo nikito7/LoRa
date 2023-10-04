@@ -30,15 +30,19 @@ mqtt:
       state_class: measurement
       device_class: signal_strength
       unit_of_measurement: dBm
+
+########### HAN ###########
 ###4
     - name: "EB5 Clock"
       unique_id: EB5_Clock
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
-        {% if value_json.HAN.ck is defined %}
-          {{ value_json.HAN.ck|string }}
-        {% else %}
-          {{ states('sensor.eb5_clock') }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.Clock is defined %}
+              {{ value_json.uplink_message.decoded_payload.Clock|string }}
+            {% endif %}          
+          {% endif %}
         {% endif %}
       icon: mdi:clock
       device:
@@ -48,10 +52,12 @@ mqtt:
       unique_id: EB5_VolL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
-          {% set x = value_json.EB5.VL1|float(0) %}
+        {% if value_json.uplink_message.decoded_payload.VL1 is defined %}
+          {% set x = value_json.uplink_message.decoded_payload.VL1|float(0) %}
           {% if x > 0 %}
             {{ x }}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "V"
       device_class: voltage
       state_class: measurement
@@ -62,7 +68,9 @@ mqtt:
       unique_id: EB5_CurL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
-          {{ value_json.EB5.CL1|float(0.0) }}
+        {% if value_json.uplink_message.decoded_payload.CL1 is defined %}
+          {{ value_json.uplink_message.decoded_payload.CL1|float(0.0) }}
+        {% endif %}
       unit_of_measurement: "A"
       device_class: current
       state_class: measurement
