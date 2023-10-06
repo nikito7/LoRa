@@ -133,4 +133,60 @@ mqtt:
       state_class: measurement
       device:
         identifiers: nikito7-EB5
+###4
+    - name: "Current L2"
+      unique_id: EB5_CurL2
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.CL2 is defined %}
+              {{ value_json.uplink_message.decoded_payload.CL2|float(0.0) }}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Current L3"
+      unique_id: EB5_CurL3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.CL3 is defined %}
+              {{ value_json.uplink_message.decoded_payload.CL3|float(0.0) }}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+###4
+    - name: "Current"
+      unique_id: EB5_Current
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.CLT is defined %}
+              {{ value_json.uplink_message.decoded_payload.CLT|float(0.0) }}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "A"
+      device_class: current
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
 # EOF
+
+
+
