@@ -59,10 +59,14 @@ mqtt:
       unique_id: EB5_VolL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
-        {% if value_json.uplink_message.decoded_payload.VL1 is defined %}
-          {% set x = value_json.uplink_message.decoded_payload.VL1|float(0) %}
-          {% if x > 0 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.VL1 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.VL1|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
         {% endif %}
       unit_of_measurement: "V"
@@ -75,8 +79,12 @@ mqtt:
       unique_id: EB5_CurL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
-        {% if value_json.uplink_message.decoded_payload.CL1 is defined %}
-          {{ value_json.uplink_message.decoded_payload.CL1|float(0.0) }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.CL1 is defined %}
+              {{ value_json.uplink_message.decoded_payload.CL1|float(0.0) }}
+            {% endif %}
+          {% endif %}
         {% endif %}
       unit_of_measurement: "A"
       device_class: current
