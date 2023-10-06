@@ -46,8 +46,8 @@ mqtt:
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
-            {% if value_json.uplink_message.decoded_payload.Clock is defined %}
-              {{ value_json.uplink_message.decoded_payload.Clock|string }}
+            {% if value_json.uplink_message.decoded_payload.AAc is defined %}
+              {{ value_json.uplink_message.decoded_payload.AAc|string }}
             {% endif %}          
           {% endif %}
         {% endif %}
