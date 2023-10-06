@@ -75,6 +75,48 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
+    - name: "Voltage L2"
+      unique_id: EB5_VolL2
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.VL2 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.VL2|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "V"
+      device_class: voltage
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+###4
+    - name: "Voltage L3"
+      unique_id: EB5_VolL3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.VL3 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.VL3|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "V"
+      device_class: voltage
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+###4
     - name: "Current L1"
       unique_id: EB5_CurL1
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
