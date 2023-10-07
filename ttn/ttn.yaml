@@ -206,6 +206,67 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
+###4
+    - name: "T1 Vazio"
+      unique_id: EB5_TotEneT1
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.TET1 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.TET1|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "T2 Ponta"
+      unique_id: EB5_TotEneT2
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.TET2 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.TET2|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "T3 Cheias"
+      unique_id: EB5_TotEneT3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.TET3 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.TET3|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      device:
+        identifiers: nikito7-EB5
+###4
 # EOF
 
 
