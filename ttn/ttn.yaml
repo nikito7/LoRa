@@ -9,6 +9,26 @@
 mqtt:
 #2
   sensor:
+########### Misc ##########
+###4
+    - name: "LoRa Counter C3"
+      unique_id: EB5_LoRa_Counterc3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061977/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {{ value_json.uplink_message.f_cnt }}
+        {% endif %}
+      state_class: measurement
+###4
+    - name: "LoRa Counter 32"
+      unique_id: EB5_LoRa_Counter32
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617f1/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {{ value_json.uplink_message.f_cnt }}
+        {% endif %}
+      state_class: measurement
+########### EB5 ##########
 ###4
     - name: "LoRa Counter"
       unique_id: EB5_LoRa_Counter
