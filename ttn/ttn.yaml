@@ -266,7 +266,48 @@ mqtt:
       state_class: total_increasing
       device:
         identifiers: nikito7-EB5
+###4 #####
+    - name: "Active Power Import"
+      unique_id: EB5_ActPow
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.API is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.API|int(0) %}
+              {% if x > -1%}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
 ###4
+    - name: "Active Power Export"
+      unique_id: EB5_ActPowExp
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.APE is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.APE|int(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "W"
+      device_class: power
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+
 # EOF
 
 
