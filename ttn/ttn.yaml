@@ -408,6 +408,47 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
+###4
+    - name: "Import"
+      unique_id: EB5_TotEneImp
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.TEI is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.TEI|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Export"
+      unique_id: EB5_TotEneExp
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.TEE is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.TEE|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "kWh"
+      device_class: energy
+      state_class: total_increasing
+      device:
+        identifiers: nikito7-EB5
+###4
 # EOF
 
 
