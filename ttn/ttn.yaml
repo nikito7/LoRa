@@ -307,7 +307,107 @@ mqtt:
       device:
         identifiers: nikito7-EB5
 ###4
-
+###4
+    - name: "Frequency"
+      unique_id: EB5_Frequency
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.Freq is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.Freq|float(0) %}
+              {% if x > 0 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "Hz"
+      device_class: frequency
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Power Factor"
+      unique_id: EB5_PowFac
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.PF is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.PF|float(0) %}
+              {% if x > -1 %}
+                 {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "%"
+      device_class: power_factor
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Power Factor L1"
+      unique_id: EB5_PowFacL1
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.PF1 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.PF1|float(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "%"
+      device_class: power_factor
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Power Factor L2"
+      unique_id: EB5_LowFacL2
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.PF2 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.PF2|float(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "%"
+      device_class: power_factor
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
+    - name: "Power Factor L3"
+      unique_id: EB5_PowFacL3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.PF3 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.PF3|float(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      unit_of_measurement: "%"
+      device_class: power_factor
+      state_class: measurement
+      device:
+        identifiers: nikito7-EB5
+###4
 # EOF
 
 
