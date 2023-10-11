@@ -454,10 +454,16 @@ mqtt:
       unique_id: EB5_ActLowL1
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.API1|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.API1 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.API1|int(0) %}
+              {% if x > -1%}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -468,10 +474,16 @@ mqtt:
       unique_id: EB5_ActPowL2
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.API2|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.API2 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.API2|int(0) %}
+              {% if x > -1%}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -482,10 +494,16 @@ mqtt:
       unique_id: EB5_ActLowL3
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.API3|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.API3 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.API3|int(0) %}
+              {% if x > -1%}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -496,10 +514,16 @@ mqtt:
       unique_id: EB5_ActPowL1Exp
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.APE1|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.APE1 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.APE1|int(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -510,10 +534,16 @@ mqtt:
       unique_id: EB5_ActPowL2Exp
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.APE2|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.APE2 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.APE2|int(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
@@ -524,10 +554,16 @@ mqtt:
       unique_id: EB5_ActPowL3Exp
       state_topic: "tele/edpbox3/SENSOR"
       value_template: >
-          {% set x = value_json.EB3.APE3|int(0) %}
-          {% if x > -1 %}
-            {{ x }}
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.APE3 is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.APE3|int(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
           {% endif %}
+        {% endif %}
       unit_of_measurement: "W"
       device_class: power
       state_class: measurement
