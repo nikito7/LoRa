@@ -452,7 +452,7 @@ mqtt:
 ###4
     - name: "Active Power L1"
       unique_id: EB5_ActLowL1
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
@@ -472,7 +472,7 @@ mqtt:
 ###4
     - name: "Active Power L2"
       unique_id: EB5_ActPowL2
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
@@ -492,7 +492,7 @@ mqtt:
 
     - name: "Active Power L3"
       unique_id: EB5_ActLowL3
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
@@ -512,7 +512,7 @@ mqtt:
 ###4
     - name: "Active Power L1 Export"
       unique_id: EB5_ActPowL1Exp
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
@@ -532,7 +532,7 @@ mqtt:
 ###4
     - name: "Active Power L2 Export"
       unique_id: EB5_ActPowL2Exp
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
@@ -552,7 +552,7 @@ mqtt:
 ###4
     - name: "Active Power L3 Export"
       unique_id: EB5_ActPowL3Exp
-      state_topic: "tele/edpbox3/SENSOR"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00617fe/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
