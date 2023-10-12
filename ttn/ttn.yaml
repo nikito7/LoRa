@@ -342,7 +342,7 @@ mqtt:
             {% endif %}
           {% endif %}
         {% endif %}
-      unit_of_measurement: "%"
+      unit_of_measurement: ""
       device_class: power_factor
       state_class: measurement
       device:
@@ -362,7 +362,7 @@ mqtt:
             {% endif %}
           {% endif %}
         {% endif %}
-      unit_of_measurement: "%"
+      unit_of_measurement: ""
       device_class: power_factor
       state_class: measurement
       device:
@@ -382,7 +382,7 @@ mqtt:
             {% endif %}
           {% endif %}
         {% endif %}
-      unit_of_measurement: "%"
+      unit_of_measurement: ""
       device_class: power_factor
       state_class: measurement
       device:
@@ -402,7 +402,7 @@ mqtt:
             {% endif %}
           {% endif %}
         {% endif %}
-      unit_of_measurement: "%"
+      unit_of_measurement: ""
       device_class: power_factor
       state_class: measurement
       device:
