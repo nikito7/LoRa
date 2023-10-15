@@ -40,7 +40,7 @@ mqtt:
 ###4
     - name: "LoRa 32 Counter"
       unique_id: EBx_LoRa_32_Counter
-      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00619c1/up"
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061c7b/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
           {{ value_json.uplink_message.f_cnt }}
