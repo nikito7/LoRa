@@ -9,7 +9,9 @@
 mqtt:
 #2
   sensor:
+  
 ########### Misc ##########
+
 ###4
     - name: "LoRa Counter C3"
       unique_id: EB5_LoRa_Counterc3
@@ -17,6 +19,22 @@ mqtt:
       value_template: >
         {% if value_json.uplink_message is defined %}
           {{ value_json.uplink_message.f_cnt }}
+        {% endif %}
+      state_class: measurement
+###4
+    - name: "LoRa MB Err C3"
+      unique_id: EB5_LoRa_mberr_c3
+      state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061977/up"
+      value_template: >
+        {% if value_json.uplink_message is defined %}
+          {% if value_json.uplink_message.decoded_payload is defined %}
+            {% if value_json.uplink_message.decoded_payload.ERR is defined %}
+              {% set x = value_json.uplink_message.decoded_payload.ERR|float(0) %}
+              {% if x > -1 %}
+                {{ x }}
+              {% endif %}
+            {% endif %}
+          {% endif %}
         {% endif %}
       state_class: measurement
 ###4
@@ -28,7 +46,9 @@ mqtt:
           {{ value_json.uplink_message.f_cnt }}
         {% endif %}
       state_class: measurement
+      
 ########### EB5 ##########
+
 ###4
     - name: "LoRa Counter"
       unique_id: EB5_LoRa_Counter
