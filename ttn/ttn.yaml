@@ -29,7 +29,7 @@ mqtt:
         {% if value_json.uplink_message is defined %}
           {% if value_json.uplink_message.decoded_payload is defined %}
             {% if value_json.uplink_message.decoded_payload.ERR is defined %}
-              {% set x = value_json.uplink_message.decoded_payload.ERR|float(0) %}
+              {% set x = value_json.uplink_message.decoded_payload.ERR|int(0) %}
               {% if x > -1 %}
                 {{ x }}
               {% endif %}
