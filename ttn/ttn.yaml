@@ -13,8 +13,8 @@ mqtt:
 ########### Misc ##########
 
 ###4
-    - name: "LoRa Counter C3"
-      unique_id: EB5_LoRa_Counterc3
+    - name: "LoRa C3 Counter"
+      unique_id: EBx_LoRa_C3_Counter
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061977/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
@@ -22,8 +22,8 @@ mqtt:
         {% endif %}
       state_class: measurement
 ###4
-    - name: "LoRa MB Err C3"
-      unique_id: EB5_LoRa_mberr_c3
+    - name: "LoRa C3 MB Err"
+      unique_id: EBx_LoRa_C3_MB_Err
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed0061977/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
@@ -38,8 +38,8 @@ mqtt:
         {% endif %}
       state_class: measurement
 ###4
-    - name: "LoRa Counter 32"
-      unique_id: EB5_LoRa_Counter32
+    - name: "LoRa 32 Counter"
+      unique_id: EBx_LoRa_32_Counter
       state_topic: "home/v3/nikito-app@ttn/devices/eui-70b3d57ed00619c1/up"
       value_template: >
         {% if value_json.uplink_message is defined %}
